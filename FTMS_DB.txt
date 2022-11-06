@@ -1,0 +1,39 @@
+CREATE DATABASE FTMS;
+CREATE TABLE FLIGHT(Flight_number INT NOT NULL,
+Flight_name varchar(50)NOT NULL, 
+Flight_description varchar(70)NOT NULL,
+Flight_total_capacity INT NOT NULL,
+Flight_food varchar(50)NOT NULL);
+
+
+CREATE TABLE FlightSchedule(id int primary key auto_increment,
+flight_from varchar(50)NOT NULL,
+flight_to VARCHAR(50)NOT NULL,
+Flight_date date NOT NULL,
+flight_time time NOT NULL,
+cost INT NOT NULL,
+Flight_number INT NOT NULL);
+ 
+
+alter table FlightSchedule add CONSTRAINT FK_Flightno FOREIGN KEY
+ (FLIGHT_number)REFERENCES flight(Flight_number) on delete cascade; 
+ 
+ 
+ alter table FLIGHT add primary key(Flight_number);
+ CREATE TABLE passenger(id INT,
+ name varchar(50)not null,
+ username varchar(50)not null,
+ email varchar(50)not null,
+ password varchar(50)not null,
+ mobile INT NOT NULL,
+ address varchar(50) not null,
+ dob date,
+ nationality varchar(50) not null,
+ gender varchar(7)not null);
+ 
+ CREATE TABLE bookedticket(ticket_number INT not null,
+ dateofbooking date not null,
+ dateoftravel date not null,
+ flightnumber INT NOT NULL,
+ CONSTRAINT FK_FLIGHTNOBOOKED FOREIGN KEY
+ (flightnumber) references FLIGHT(Flight_number)on delete cascade);
